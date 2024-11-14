@@ -4,46 +4,70 @@ from time import sleep
 import sys
 
 
-def printFancy(text):
-    printText = ""
-
-    print("\n\n--------------------\n\n")
-
+def fancyText(text):
     for letter in text:
-        printText += letter
-        #print("---------------------------")
         print(letter, end='', flush=True) 
-        #sys.stdout.flush()
-        #print("---------------------------")
-        sleep(0.035)
+        sleep(0.025)
+
+
+def sarcasmText(text):
+    capital = False
+    for letter in text:
+        if capital == False:
+            letter = letter.lower()
+            capital = True
+            
+        else:
+            letter = letter.upper()
+            capital = False
+           
+        print(letter, end='', flush=True) 
+        sleep(0.025)
+
+
+def printSarcasm(text):
+    print("\n\n--------------------\n\n")
+    sarcasmText(text)
     print("\n\n--------------------")
 
     GoFurther = input("Continue ➡️   ")
 
-"""def printFancy(text):
-    printText = ""
+def printFancy(text):
+    #printText = ""
 
-    for letter in text:
-        printText += letter
-        print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n---------------------------")
-        print(printText)
-        print("---------------------------\n\n\n\n\n")
-        sleep(0.025)
+    print("\n\n--------------------\n\n")
+    fancyText(text)
+    print("\n\n--------------------")
 
-    GoFurther = input("input enter to continue... ")
-"""
+    GoFurther = input("Continue ➡️   ")
+
+def inputFancy(text,question):
+    print("\n\n--------------------\n\n")
+    fancyText(text)
+    print("\n\n--------------------")
+
+    return input(question)
+
+def getItem(text,item):
+    print("\n\n--------------------\n\n")
+    fancyText(text)
+    print()
+    sleep(0.5)
+    inventory.append(item)
+    itemText = f"// You Aquired the Item: {item}! //"
+    fancyText(itemText)
+    print("\n\n--------------------")
+
+
 
 printFancy("You awake after a long nights restful sleep 😐.")
-printFancy("Mysteriously, you find yourself in a hamsters body, whereas you're leaping over fields in the hunt for de golden dandilion")
-printFancy("You flinch and freeze in your thought, do you decide to look at the [Dandilion] or take a closer look at your mystical [Hamster] body?")
-choice = input("What do you choose? ").lower()
+printSarcasm("Mysteriously, you find yourself in a hamsters body, whereas you're leaping over fields in the hunt for the golden dandilion")
+choice = inputFancy("You flinch and freeze in your thought, do you decide to look at the [Dandilion] or take a closer look at your mystical [Hamster] body?","What do you choose? ").lower()
+
 
 if "hamster" in choice:
-    print("In this moment you decide to admire your fascinatingly stunning new fluffy body as you feel your desire for grass to grow stronger")
+    fancyText("In this moment you decide to admire your fascinatingly stunning new fluffy body as you feel your desire for grass to grow stronger")
 elif "dandilion" in choice:
-    print("You scream on the inside, that being because you have a dandilion allergy.. Regardless you put it into your designated hamster bag")
-    inventory.append("Dandilion")
+    getItem("You scream on the inside, that being because you have a dandilion allergy.. \nRegardless you put it into your designated hamster bag","Dandilion")
 else:
-    print("You realize you aren't the best of spellers, but that's alright.")
-
-print(inventory)
+    fancyText("You realize you aren't the best of spellers, but that's alright. \nYou move onwards...")
